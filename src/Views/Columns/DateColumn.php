@@ -38,7 +38,9 @@ class DateColumn extends Column
                 // Create DateTime Object
                 $dateTime = \DateTime::createFromFormat($this->getInputFormat(), $dateTime);
             } catch (\Exception $exception) {
-                report($exception);
+                if (isset($dateTime)) {
+                    report($exception);
+                }
 
                 // Return Null
                 return $this->getEmptyValue();
